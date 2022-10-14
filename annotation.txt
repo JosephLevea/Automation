@@ -1,0 +1,73 @@
+package drop;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class task13 {
+
+	WebDriver driver;
+	
+	@BeforeMethod
+	public void ApplicationLaunch() {
+		
+		WebDriverManager.chromedriver().setup();
+		
+		driver =new ChromeDriver();
+
+		driver.get("https://www.hyrtutorials.com/p/basic-controls.html");
+		
+		driver.manage().window().maximize();
+		
+	}
+	
+	
+	
+	@Test
+	public void VerifyURLtestLinkPage() {
+		// TODO Auto-generated method stub
+		
+		driver.findElement(By.linkText("Click here to navigate to the home page")).click();
+		
+		String sr=driver.getTitle();
+		
+		System.out.println(sr);
+		
+		if(driver.getTitle().equals("H Y R Tutorials - H Y R Tutorials")) {
+			System.out.println("equals");
+		}
+		else {
+			System.out.println("Not  Equals");		}
+	}
+	
+	@Test
+	public void VerifyURLHomepagetest() {
+		// TODO Auto-generated method stub
+		
+		String sr=driver.getTitle();
+		
+		System.out.println(sr);
+		
+		if(driver.getTitle().equals("Basic Controls - H Y R Tutorialsss")) {
+			System.out.println("equals home page title");
+		}
+		else {
+			System.out.println("Not  Equals home page title");		}
+	}
+	
+	
+	@AfterMethod
+	public void ApplicationClose() {
+		
+		driver.close();
+	
+	}
+	
+	}
+	
+	
